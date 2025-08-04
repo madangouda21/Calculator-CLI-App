@@ -1,1 +1,68 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Web Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculator</h1>
+        </header>
+        
+        <main>
+            <div class="calculator-panel">
+                <div class="display-container">
+                    <input type="text" id="display" disabled>
+                </div>
+                <div class="buttons">
+                    <button onclick="appendToDisplay('7')">7</button>
+                    <button onclick="appendToDisplay('8')">8</button>
+                    <button onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('/')" class="operator">/</button>
+        
+                    <button onclick="appendToDisplay('4')">4</button>
+                    <button onclick="appendToDisplay('5')">5</button>
+                    <button onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('*')" class="operator">*</button>
+        
+                    <button onclick="appendToDisplay('1')">1</button>
+                    <button onclick="appendToDisplay('2')">2</button>
+                    <button onclick="appendToDisplay('3')">3</button>
+                    <button onclick="appendToDisplay('-')" class="operator">-</button>
+        
+                    <button onclick="appendToDisplay('0')">0</button>
+                    <button onclick="clearDisplay()" class="clear">C</button>
+                    <button onclick="calculate()" class="equals">=</button>
+                    <button onclick="appendToDisplay('+')" class="operator">+</button>
+                </div>
+            </div>
+            
+            <div class="dashboard-panel">
+                <div class="dashboard-header">
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="dashboard-section">
+                    <h3>Calculation History</h3>
+                    <div id="history-list" class="history-list">
+                        {% for item in history %}
+                        <div class="history-item">
+                            <span class="expression">{{ item.expression }}</span>
+                            <span class="result">= {{ item.result }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button id="clearHistoryBtn" class="clear-history-btn">Clear History</button>
+                </div>
+                <div class="dashboard-section">
+                    <h3>Top Operations</h3>
+                    <p>Update</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
